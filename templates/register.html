@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/head"><meta charset="utf-8" ></head>
+
+<body class="hold-transition register-page">
+<div class="register-box">
+  <div class="register-logo">
+    <b>REFlex Water</b>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Registrar novo usuário</p>
+
+		<!-- span th:if="${param.success}">
+			<p class="alert alert-success">Registro bem sucedido!</p>
+		</span-->
+				
+      <form th:action="@{/user}" action="/user" method="post" role="form" id="registerForm">
+        <div class="input-group mb-3 form-group">
+          <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3 form-group">
+          <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3 form-group">
+          <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" id="reg" name="reg" class="btn btn-primary btn-block">Registrar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <a th:href="@{/login}"  href="login.html" class="text-center">Já possuo cadastro</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script th:src="@{plugins/jquery/jquery.min.js}" src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script th:src="@{plugins/bootstrap/js/bootstrap.bundle.min.js}" src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script th:src="@{dist/js/adminlte.js}" src="dist/js/adminlte.js"></script>
+<!-- SweetAlert2 -->
+<script th:src="@{plugins/sweetalert2/sweetalert2.min.js}" src="plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script th:src="@{plugins/toastr/toastr.min.js}" src="plugins/toastr/toastr.min.js"></script>
+<!-- jquery-validation -->
+<script th:src="@{plugins/jquery-validation/jquery.validate.min.js}" src="plugins/jquery-validation/jquery.validate.min.js"></script>
+<script th:src="@{plugins/jquery-validation/additional-methods.min.js}" src="plugins/jquery-validation/additional-methods.min.js"></script>
+
+<script type="text/javascript" th:inline="javascript">
+$(document).ready(function () {
+	
+  $('#registerForm').validate({
+    rules: {
+      nome: {
+        required: true        
+      },
+      email: {
+        required: true,
+        email: true,
+      },
+      senha: {
+        required: true,
+        minlength: 4
+      }      
+    },
+    messages: {
+      nome: {
+        required: "Digite o nome do usuário"
+      },
+      email: {
+        required: "Digite um endereço de e-mail",
+        email: "Por favor insira um endereço de e-mail válido"
+      },
+      senha: {
+        required: "Forneça uma senha",
+        minlength: "Sua senha deve ter pelo menos 4 caracteres"
+      }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+  
+  
+  $("#registerForm").submit(function(event){
+		event.preventDefault(); //evita o refresh da página
+		var post_url 	     = $(this).attr("action"); //pega url
+		var request_method = $(this).attr("method"); //pega o metodo do form
+		var form_data 	   = $(this).serialize(); //serializa os dados do form
+				
+		$.ajax({
+			url : post_url,
+			type: request_method,
+			data: form_data
+		}).done(function(response){
+			$('#registerForm')[0].reset();//limpa todos os campos do form
+			toastr.success('Usuário registrado com sucesso!');
+			$(location).attr("href", "/");
+		}).fail(function() {
+			toastr.error('Falha ao registrar Usuário!');
+		});
+  });
+});
+</script>
+</body>
+</html>

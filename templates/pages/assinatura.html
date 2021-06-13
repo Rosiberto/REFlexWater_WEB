@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  
+  <head th:replace="fragments/head1"><meta charset="utf-8"></head>
+  <script>
+  function existsSubscribe(){
+	  var url = "/api/v1/subscription";
+	  var xhr = new XMLHttpRequest();
+	  xhr.open("GET", url, true);
+	  
+	  var c = document.getElementById('cygnus');
+	  var p = document.getElementById('perseo');		 
+		     
+	  xhr.onload = function () {
+	  	var resposta = JSON.parse(xhr.responseText);
+	
+	  	if (xhr.readyState === 4 && (xhr.status === 200 ) ) {
+	  		
+	  		if(resposta === 1){
+	  			c.checked = true;
+	  		}else if(resposta === 2){
+	  			p.checked = true;
+	  		}else if(resposta === 3){
+	  			p.checked = true;
+	  	   		c.checked = true;
+	  		}
+	  		     
+		}else{
+			toastr.error('Failed!');	  		
+		}
+	  }
+	  xhr.send(null);	  
+  }
+  </script>
+  
+<body class="hold-transition sidebar-mini" onload="existsSubscribe()">
+<div class="wrapper">
+
+   <!-- Navbar -->
+   	<nav th:replace="fragments/nav"></nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+	<aside th:replace="fragments/aside"></aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Configurar Assinatura</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a th:href="@{/}" href="../../index.html">Home</a></li>
+              <li class="breadcrumb-item active">Configurar Assinatura</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+        <div class="card">
+          
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th >Descrição</th>
+                  <th style="width: 40%">Origem</th>
+                  <th style="width: 10%">Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Persistência de Dados Históricos</td>
+                  <td>Cygnus</td>
+                  <td>
+                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                      <input type="checkbox" id="cygnus" name="cygnus" class="custom-control-input" onclick="actionHistoricalData()">
+                      <label class="custom-control-label" for="cygnus"></label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Notificação de Eventos</td>
+                  <td>Perseo</td>
+                  <td>
+                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                      <input type="checkbox" id="perseo" name="perseo" class="custom-control-input" onclick="actionCEP()">
+                      <label class="custom-control-label" for="perseo"></label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      
+      
+      </div>  
+    <!-- /.container-fluid -->
+  </section>
+ <!-- /.content -->
+</div>
+  
+  <footer class="main-footer" th:replace="fragments/footer"> </footer>
+  
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script th:src="@{../../plugins/jquery/jquery.min.js}" src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{../../plugins/bootstrap/js/bootstrap.bundle.min.js}" src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script th:src="@{../../dist/js/adminlte.min.js}" src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script th:src="@{../../dist/js/demo.js}" src="../../dist/js/demo.js"></script>
+<!-- SweetAlert2 -->
+<script th:src="@{../../plugins/sweetalert2/sweetalert2.min.js}" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script th:src="@{../../plugins/toastr/toastr.min.js}" src="../../plugins/toastr/toastr.min.js"></script>
+
+
+<!-- Page script -->
+<script>
+
+  function actionHistoricalData() {
+	  var c = document.getElementById('cygnus');
+      
+      if (c.checked){   	  
+    	 postCyg();
+      }else{ 
+    	 deleteCyg(); 
+      }
+  } 
+
+  function actionCEP() {
+    var p = document.getElementById('perseo');
+      
+      if (p.checked){
+    	 postPer();        
+      }else{ 
+    	 deletePer(); 
+      }
+  }
+  
+  function postCyg(){
+	  var url = "/api/v1/subscription/cygnus";
+	  var xhr = new XMLHttpRequest();
+	  xhr.open("POST", url, true);
+
+	  xhr.onload = function () {
+	  	var resposta = JSON.parse(xhr.responseText);
+	  	if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 201 ) ) {
+		     toastr.success('Dados Históricos ativados com sucesso!');
+	  		//console.table(xhr.status+ " . "+resposta +" - " +xhr.readyState );
+	  	} else {
+	  		toastr.error('Falha ao ativar Dados Históricos!');
+	  		//console.error(xhr.status+ " . "+resposta +" - " +xhr.readyState);
+	  	}
+	  }
+	  xhr.send(null);
+  }
+  
+  function deleteCyg(){
+	  var url = "/api/v1/subscription/cygnus";
+	  var xhr = new XMLHttpRequest();
+	  xhr.open("DELETE", url, true);
+
+	  xhr.onload = function () {
+	  	var resposta = JSON.parse(xhr.responseText);
+	  	if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 204 ) ) {
+		     toastr.success('Dados Históricos desativados com sucesso!');
+	  		//console.table(xhr.status+ " . "+resposta +" - " +xhr.readyState );
+	  	} else {
+	  		toastr.error('Falha ao desativar Dados Históricos!');
+	  		//console.error(xhr.status+ " . "+resposta +" - " +xhr.readyState);
+	  	}
+	  }
+	  xhr.send(null);
+  }
+  
+  function postPer(){
+	  var url = "/api/v1/subscription/perseo";
+	  var xhr = new XMLHttpRequest();
+	  xhr.open("POST", url, true);
+
+	  xhr.onload = function () {
+	  	var resposta = JSON.parse(xhr.responseText);
+	  	if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 201 ) ) {
+		     toastr.success('Envio de Eventos ativados com sucesso!');	  		
+	  	} else {
+	  		toastr.error('Falha ao ativar o Envio de Eventos!');	  		
+	  	}
+	  }
+	  xhr.send(null);
+  }  
+  
+  function deletePer(){
+	  var url = "/api/v1/subscription/perseo";
+	  var xhr = new XMLHttpRequest();
+	  xhr.open("DELETE", url, true);
+
+	  xhr.onload = function () {
+	  	var resposta = JSON.parse(xhr.responseText);
+
+	  	if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 204 ) ) {
+		     toastr.success('Envio de Eventos desativados com sucesso!');
+	  	} else {
+	  		toastr.error('Falha ao desativar Envio de Eventos!');	  		
+	  	}
+	  }
+	  xhr.send(null);
+  }
+ 
+  
+</script>
+</body>
+</html>
