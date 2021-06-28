@@ -280,15 +280,27 @@ function init() {
     }
 	
     function createRule(){
-		var epl, epl_select, epl_event, epl_condition, epl_timer, 
-			ini_rule_name, fim_rule_name, as, id, nameRule, 
-			tipo, ini_from_pattern, fim_from_pattern, cast,			
-			json_text_select, json, json_name, json_text, 
-			json_action, json_actionType, json_actionTemplate, json_actionTemplate_text, json_actionParameters, json_action_fromEmail, json_action_toEmail,
-			json_action_subject, json_time, json_time_fim, meio_from_pattern, fecha_chave,
-			attribute_text, key_attribute, key_condition, condition_text, key_event, event_text, comboTipo, comboAction, key_timer, timer_text;
+		var epl, epl_select, epl_event, epl_condition, 
+			epl_timer, ini_rule_name, fim_rule_name, as, 
+			id, nameRule, tipo, ini_from_pattern, 
+			fim_from_pattern, cast,	json_text_select,
+			json, json_name, json_text, json_action, 
+			json_actionType, json_actionTemplate, 
+			json_actionTemplate_text, json_actionParameters, 
+			json_action_fromEmail, json_action_toEmail, 
+			json_action_subject, json_time, json_time_fim, 
+			meio_from_pattern, fecha_chave, attribute_text, 
+			key_attribute, key_condition, condition_text,
+			key_event, event_text, comboTipo, comboAction, 
+			key_timer, timer_text, severitTipo,typeAction, 
+			json_url, json_headers, json_json_ini, 
+			json_json_message_ini;
 		
-		
+					
+				json_json_ini = '"json":{"severit":"';
+		json_json_message_ini = '"message":"';
+				 json_headers = '"headers":{"Content-type": "application/json"},';
+					 json_url = '"url":"/api/v2/notify",';
 					json_text = '","text":';
 					json_name = '{"name":"';
 				  fecha_chave = '}';
@@ -310,11 +322,12 @@ function init() {
 			 fim_from_pattern = "\\\")]";				
 					json_time = '.win:time(';
 				json_time_fim = ' minute)"';
-	
-	
+				
+		   		
 		
-		comboTipo = document.getElementById("tipo");			
-		tipo 	  = comboTipo.options[comboTipo.selectedIndex].value;
+		//comboTipo = document.getElementById("tipo");			
+		//tipo 	  = comboTipo.options[comboTipo.selectedIndex].value;
+		tipo 	  = document.getElementById("tipo").value;	
 		
 		json_action_subject	  	 = '"subject":"' + document.getElementById("notificacao").value + '"';
 		
@@ -322,11 +335,17 @@ function init() {
 
 		nameRule = document.getElementById("nameRule").value;
 
+		//json_actionType = json_actionType + document.getElementById("typeAction").value + '",';
+		typeAction = document.getElementById("typeAction").value;
+		json_actionType = json_actionType + typeAction;
+		
+		
 		json_action_fromEmail = json_action_fromEmail + document.getElementById("fromEmail").value+ '",';
 
 		json_action_toEmail = json_action_toEmail + document.getElementById("toEmail").value + '",';
-
-		json_actionType = json_actionType + document.getElementById("typeAction").value + '",';
+		
+		severitTipo = document.getElementById("severit").value;
+		
 		
 		
 		for(var a in myDiagram.model.nodeDataArray ){
@@ -367,9 +386,39 @@ function init() {
 				json_actionTemplate_text + " "+ event_text + 
 				' = ${'+ attribute_text +'}' + json_actionParameters + json_action_toEmail + json_action_fromEmail + 
 				json_action_subject + fecha_chave + fecha_chave + fecha_chave;
-			
+
+				
+		if (typeAction == "email"){
+	
+			json = 	json_name + nameRule + json_text + epl + 
+					json_action + json_actionType + json_actionTemplate + 
+					json_actionTemplate_text + " "+ event_text + 
+					' = ${'+ attribute_text +'}' + json_actionParameters + json_action_toEmail + json_action_fromEmail + 
+					json_action_subject + fecha_chave + fecha_chave + fecha_chave;
+		}else{
+			json = 	json_name + nameRule + json_text + epl + 
+					json_action + json_actionType + json_actionParameters + 
+					json_url + json_headers +
+					json_json_ini + severitTipo + '",' + 
+					json_json_message_ini + json_actionTemplate_text + " "+ 
+					event_text + ' = ${'+ attribute_text + fecha_chave + '"' +			
+					fecha_chave + fecha_chave + fecha_chave + fecha_chave;		
+		}
+		
 		postRule( json );//envia regra p/mongoDB			
 	}
+	
+	function disabledEmail(){
+		document.getElementById("typeAction").onchange=function(){
+			document.getElementById("toEmail").disabled=false
+			if(this.selectedIndex==2){
+				document.getElementById("toEmail").value="";
+				return document.getElementById("toEmail").disabled=true;
+			}
+		}
+	}
+	
+	
 	
 	function postRule(rule){
 		$.ajax({

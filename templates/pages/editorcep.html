@@ -343,7 +343,7 @@
 </script-->
 
 
-<body onload="init()" class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body onload="init(); disabledEmail();" class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
  <!-- Navbar -->
@@ -383,31 +383,41 @@
           <div class="card-body">
             <div class="row">
               <div class="col-3">
-                <input id="nameRule" name="nameRule" type="text" class="form-control" placeholder="Nome da regra">
+                <input id="nameRule" name="nameRule" type="text" class="form-control" placeholder="Nome da regra" title="Nome da regra">
               </div>
               <div class="col-2">
                 <div class="form-group">
-                  <select id="typeAction" name="typeAction" class="form-control select2" style="width: 100%;">
-                    <option>Selecionar ação</option>
-                    <option selected="selected">email</option>
+                  <select id="typeAction" name="typeAction" class="form-control select2" style="width: 100%;" title="Ação do Alerta">
+                    <option>Selecionar</option>
+                    <option value="email">email</option>
                     <!-- option>atualização</option>
                     <option>sms</option-->
-                    <option>notificação</option>
+                    <option value="post">notificação</option>
                   </select>
                 </div>
               </div>
-              <div class="col-3">
+              <div class="col-2">
                 <div class="form-group">
-                  <select id="tipo" name="tipo" class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Selecionar tipo</option>
-                    <option>Pump</option>
-                    <option>Reservoir</option>                    
-                    <option>Tank</option>
-                    <option>Valves</option>                    
+                  <select id="severit" name="severit" class="form-control select2" style="width: 100%;" title="Nível do alerta">
+                    <option selected="selected">Selecionar</option>
+                    <option value="critical">critical</option>
+                    <option value="info">info</option>                    
+                    <option value="warn">warn</option>                    
+                  </select>
+                </div>
+              </div> 
+              <div class="col-2">
+                <div class="form-group">
+                  <select id="tipo" name="tipo" class="form-control select2" style="width: 100%;" title="Componente da rede">
+                    <option selected="selected" >Selecionar</option>
+                    <option value="Pump">Pump</option>
+                    <option value="Reservoir">Reservoir</option>                    
+                    <option value="Tank">Tank</option>
+                    <option value="Valve">Valves</option>                    
                   </select>
                 </div>
               </div>              
-              <div class="col-4">
+              <div class="col-3">
                 <input id="notificacao" name="notificacao" type="text" class="form-control" disabled="true" value="REFlex Water - Notificação de Evento" placeholder="REFlex Water - Notificação de Evento">
               </div>
             </div>
@@ -421,14 +431,14 @@
               <div class="col-3">
                 <div class="form-group"-->
                 <!-- ******************************** --> 
-                  <input id="toEmail" name="toEmail" type="email" class="form-control" placeholder="Para (e-mail)">
+                  <input id="toEmail" name="toEmail" type="email" class="form-control" placeholder="Para (e-mail)" title="Destinatário do email">
                 </div>
               </div>
               <!-- Original é col-6 -->
               <!-- div class="col-6"-->
               <div class="col-9">
                 <div class="form-group">
-                  <textarea id="templateMSG" name="templateMSG" class="form-control" rows="3" placeholder="Mensagem (e-mail). Se precisar informar dados dos sensores, use: ${propriedade_lida}"></textarea>
+                  <textarea id="templateMSG" name="templateMSG" class="form-control" rows="3" placeholder="Mensagem (e-mail). Se precisar informar dados dos sensores, use: ${propriedade_lida}" title="Mensagem da Notificação"></textarea>
                 </div>
               </div>
             </div>
