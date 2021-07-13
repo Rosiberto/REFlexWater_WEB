@@ -387,7 +387,7 @@
               </div>
               <div class="col-2">
                 <div class="form-group">
-                  <select id="typeAction" name="typeAction" class="form-control select2" style="width: 100%;" title="Ação do Alerta">
+                  <select id="typeAction" name="typeAction" class="form-control select2" style="width: 100%;" title="Tipo de envio">
                     <option>Selecionar</option>
                     <option value="email">email</option>
                     <!-- option>atualização</option>
@@ -398,11 +398,12 @@
               </div>
               <div class="col-2">
                 <div class="form-group">
-                  <select id="severit" name="severit" class="form-control select2" style="width: 100%;" title="Nível do alerta">
+                  <select id="severit" name="severit" class="form-control select2" style="width: 100%;" title="Tipo do alerta">
                     <option selected="selected">Selecionar</option>
-                    <option value="critical">critical</option>
-                    <option value="info">info</option>                    
-                    <option value="warn">warn</option>                    
+                    <option value="warn">atenção</option>
+                    <option value="critical">crítico</option>                    
+                    <option value="info">informação</option>                    
+                                        
                   </select>
                 </div>
               </div> 
@@ -410,10 +411,10 @@
                 <div class="form-group">
                   <select id="tipo" name="tipo" class="form-control select2" style="width: 100%;" title="Componente da rede">
                     <option selected="selected" >Selecionar</option>
-                    <option value="Pump">Pump</option>
-                    <option value="Reservoir">Reservoir</option>                    
-                    <option value="Tank">Tank</option>
-                    <option value="Valve">Valves</option>                    
+                    <option value="Pump">Bomba</option>
+                    <option value="Reservoir">Reservatório</option>                    
+                    <option value="Tank">Tanque</option>
+                    <option value="Valve">Válvula</option>                    
                   </select>
                 </div>
               </div>              
@@ -438,7 +439,7 @@
               <!-- div class="col-6"-->
               <div class="col-9">
                 <div class="form-group">
-                  <textarea id="templateMSG" name="templateMSG" class="form-control" rows="3" placeholder="Mensagem (e-mail). Se precisar informar dados dos sensores, use: ${propriedade_lida}" title="Mensagem da Notificação"></textarea>
+                  <textarea id="templateMSG" name="templateMSG" class="form-control" rows="3" placeholder="Mensagem da notificação. Para informar dados dos sensores, use: ${attribute}" title="Mensagem da Notificação"></textarea>
                 </div>
               </div>
             </div>

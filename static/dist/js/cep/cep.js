@@ -296,11 +296,12 @@ function init() {
 			json_url, json_headers, json_json_ini, 
 			json_json_message_ini;
 		
-					
+			json = "";
+			
 				json_json_ini = '"json":{"severit":"';
 		json_json_message_ini = '"message":"';
-				 json_headers = '"headers":{"Content-type": "application/json"},';
-					 json_url = '"url":"/api/v2/notify",';
+				 json_headers = '"headers":{"Content-Type": "application/json"},';
+					 json_url = '"url":"http://195.220.224.169:8500/api/v2/notify",';
 					json_text = '","text":';
 					json_name = '{"name":"';
 				  fecha_chave = '}';
@@ -310,8 +311,8 @@ function init() {
 			  json_actionType = '"type":"';
 		  json_actionTemplate = '"template":\"';
 		json_actionParameters = '\", "parameters":{';
-		 			 ini_cast = 'cast(cast(';
-					 fim_cast = '?,String),float)';
+		 			 ini_cast = 'cast(';
+					 fim_cast = '?,float)';
 						   id = 'id';
 						   as = '? as ';
 			 json_text_select = '"select *,ev.';
@@ -381,20 +382,22 @@ function init() {
 			epl = epl_select + epl_condition + epl_timer;
 		}
 		
-		json =  json_name + nameRule + json_text + epl + 
+		/*json =  json_name + nameRule + json_text + epl + 
 				json_action + json_actionType + json_actionTemplate + 
 				json_actionTemplate_text + " "+ event_text + 
 				' = ${'+ attribute_text +'}' + json_actionParameters + json_action_toEmail + json_action_fromEmail + 
 				json_action_subject + fecha_chave + fecha_chave + fecha_chave;
-
+		*/
 				
 		if (typeAction == "email"){
 	
 			json = 	json_name + nameRule + json_text + epl + 
-					json_action + json_actionType + json_actionTemplate + 
-					json_actionTemplate_text + " "+ event_text + 
-					' = ${'+ attribute_text +'}' + json_actionParameters + json_action_toEmail + json_action_fromEmail + 
-					json_action_subject + fecha_chave + fecha_chave + fecha_chave;
+					json_action + json_actionType + '",'+ 
+					json_actionTemplate + json_actionTemplate_text + 
+					" "+ event_text + ' = ${'+ attribute_text +'}' + 
+					json_actionParameters + json_action_toEmail + 
+					json_action_fromEmail + json_action_subject + 
+					fecha_chave + fecha_chave + fecha_chave;
 		}else{
 			json = 	json_name + nameRule + json_text + epl + 
 					json_action + json_actionType + json_actionParameters + 
