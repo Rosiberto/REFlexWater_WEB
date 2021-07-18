@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+	<head th:replace="fragments/head1"><meta charset="utf-8"></head>
+
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">  
+  
+<div class="wrapper">
+
+  <!-- Navbar -->
+   	<nav th:replace="fragments/nav"></nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+	<aside th:replace="fragments/aside"></aside>
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Monitoramento</h1>
+            
+            
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a th:href="@{/}" href="#">Dashboard</a></li>
+              <li class="breadcrumb-item">Monitoramento</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+        
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-teal elevation-1">
+                <img src="dist/img/pump1.png" style="opacity: 2.8">
+              </span>
+              <div id="numberPumps" class="info-box-content" align="center">
+                <span class="info-box-text">Bombas</span>
+                <span class="info-box-number">
+                  <span> - </span>
+                </span>  
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-orange elevation-1">
+                <img src="dist/img/valve1.png" style="opacity: 2.8">
+              </span>
+
+              <div id="numberValves" class="info-box-content" align="center">
+                <span class="info-box-text">Válvulas</span>
+                <span class="info-box-number">
+                  <span> - </span>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+              
+         
+        
+        <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-navy elevation-1">
+                <img src="dist/img/reservoir3.png" style="opacity: 2.8">
+              </span>
+
+              <div id="numberReservoir" class="info-box-content" align="center">
+                <span class="info-box-text">Reservatórios</span>
+                <span class="info-box-number">
+                  <span> - </span>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-indigo elevation-1">
+                <img src="dist/img/tank1.png" style="opacity: 2.8">
+              </span>
+
+              <div id="numberTanks" align="center" class="info-box-content">
+                  <span class="info-box-text">Tanques</span>
+                  	<span class="info-box-number">
+                  		<span> - </span>
+                  	</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+      <div class="row">
+      	 <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">Monitoramento de Bombas</h5>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <!-- /.chart-responsive inicio -->
+                  <div class="col-md-12">
+                    <div class="chart">
+                      <!-- Flow Chart -->
+                      <canvas id="flowChartPump" height="180" style="height: 180px;"></canvas>
+                    </div>
+                    <!-- /.chart-responsive -->
+                  </div> 
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+             </div>
+            <!-- /.card -->
+         </div>  
+         
+         <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">Monitoramento de Válvulas</h5>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <!-- /.chart-responsive inicio -->
+                  <div class="col-md-12">
+                    <div class="chart">
+                      <!-- Flow Chart -->
+                      <canvas id="flowChartValve" height="180" style="height: 180px;"></canvas>
+                    </div>
+                    <!-- /.chart-responsive -->
+                  </div> 
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+      </div>    
+      
+      <div class="row">
+         <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">Monitoramento de Reservatórios</h5>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  
+                </div>
+              </div>
+              
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <!-- /.chart-responsive inicio -->
+                  <div class="col-md-6">
+                    <div class="chart">
+                      <!-- Head Chart -->
+                      <canvas id="headChartReservoir" height="180" style="height: 180px;"></canvas>
+                    </div>
+                    <!-- /.chart-responsive -->
+                  </div> 
+                   
+                  <!-- /.chart-responsive inicio -->
+                  <div class="col-md-6">
+                    <div class="chart">
+                      <!-- Pressure Chart -->
+                      <canvas id="pressureChartReservoir" height="180" style="height: 180px;"></canvas>
+                    </div>
+                    <!-- /.chart-responsive -->
+                  </div>
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        <!-- /.col -->
+      </div>
+        
+        
+      <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">Monitoramento de Tanques</h5>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  
+                  <!-- >button th:action="@{/}" type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button-->
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="row">
+                  <!-- /.chart-responsive inicio -->
+                  <div class="col-md-6">
+                    <div class="chart">
+                      <!-- Head Chart -->
+                      <canvas id="headChartTank" height="180" style="height: 180px;"></canvas>
+                    </div>
+                    <!-- /.chart-responsive -->
+                  </div> 
+                   
+                  <!-- /.chart-responsive inicio -->
+                  <div class="col-md-6">
+                    <div class="chart">
+                      <!-- Pressure Chart -->
+                      <canvas id="pressureChartTank" height="180" style="height: 180px;"></canvas>
+                    </div>
+                    <!-- /.chart-responsive -->
+                  </div>
+                
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- ./card-body -->
+              <!-- >div class="card-footer">
+                descrição abaixo do gráfico
+                <!-- /.row -->
+              </div-->
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+      </div>
+        <!-- /.row -->       
+        
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer" th:replace="fragments/footer"></footer>
+   
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script  th:src="@{plugins/jquery/jquery.min.js}" src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script th:src="@{plugins/bootstrap/js/bootstrap.bundle.min.js}" src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script th:src="@{plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}" src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script th:src="@{dist/js/adminlte.js}" src="dist/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script th:src="@{dist/js/demo.js}" src="dist/js/demo.js"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script th:src="@{plugins/jquery-mousewheel/jquery.mousewheel.js}" src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script th:src="@{plugins/raphael/raphael.min.js}" src="plugins/raphael/raphael.min.js"></script>
+<script th:src="@{plugins/jquery-mapael/jquery.mapael.min.js}" src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script th:src="@{plugins/jquery-mapael/maps/usa_states.min.js}" src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- ChartJS -->
+<script th:src="@{plugins/chart.js/Chart.min.js}" src="plugins/chart.js/Chart.min.js"></script>
+
+<!-- PAGE SCRIPTS -->
+<script th:src="@{dist/js/pages/app.js}" src="dist/js/pages/app.js"></script>
+ 
+
+</body>
+</html>

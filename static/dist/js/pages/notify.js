@@ -1,6 +1,6 @@
-  //var button = document.querySelector('button');
+ //var button = document.querySelector('button');
   
-  var evtSourceCritical = new EventSource('http://localhost:8080/queue/critical');
+  var evtSourceCritical = new EventSource('api/v2/queue/critical');
   evtSourceCritical.onopen = function() {
     console.log("Connection to server opened.");
   };
@@ -14,7 +14,7 @@
   };
 
   
-  var evtSourceInfo = new EventSource('http://localhost:8080/queue/info');
+  var evtSourceInfo = new EventSource('api/v2/queue/info');
   evtSourceInfo.onopen = function() {
     console.log("Connection to server opened.");
   };
@@ -27,7 +27,7 @@
     console.log("EventSource failed.");
   };
 
-  var evtSourceWarn = new EventSource('http://localhost:8080/queue/warn');
+  var evtSourceWarn = new EventSource('api/v2/queue/warn');
   evtSourceWarn.onopen = function() {
     console.log("Connection to server opened.");
   };
