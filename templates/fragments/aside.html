@@ -33,7 +33,7 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
+                <i class="nav-icon fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -48,14 +48,44 @@
                     <i class="nav-icon fas fa-chart-line"></i>
                     <p>Monitoramento</p>
                   </a>
-                </li>                
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon far fa-chart-bar"></i>
-                    <p>Estatísticas</p>
-                  </a>
-                </li>
+                </li>                  
               </ul>
+          </li>
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-chart-bar"></i>
+                <p>Estatísticas
+                	<i class="nav-icon fas fa-angle-left right"></i>
+                </p>                
+            </a>
+            
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a th:href="@{/statisticp}" href="pages/estatisticaPump.html" class="nav-link">
+                  <i class="nav-icon far fa-dot-circle"></i>
+                  <p>Bombas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/statistict}" href="pages/estatisticaTank.html" class="nav-link">
+                  <i class="nav-icon far fa-dot-circle"></i>
+                  <p>Tanques</p>
+                </a>
+              </li>                
+              <li class="nav-item">
+                <a th:href="@{/statisticr}" href="pages/estatisticaReservoir.html" class="nav-link">
+                  <i class="nav-icon far fa-dot-circle"></i>
+                  <p>Reservatórios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/statisticv}" href="pages/estatisticaValve.html" class="nav-link">
+                  <i class="nav-icon far fa-dot-circle"></i>
+                  <p>Válvulas</p>
+                </a>
+              </li>
+            </ul>
           </li>
        
           <!-- MENU ASSINATURA -->

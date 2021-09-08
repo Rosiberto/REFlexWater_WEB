@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/head"><meta charset="utf-8" ></head>
+
+<body class="hold-transition layout-fixed layout-navbar-fixed layout-footer-fixed" style="background-image:url('dist/img/logo2.png');background-repeat:no-repeat;background-size:75% 95%;background-attachment:fixed;">  
+  
+    <!-- Main content -->
+    <section class="content">
+      <div class="error-page">
+        
+        </br>
+        
+        <div class="error-content">
+          <h1><i class="fas fa-exclamation-triangle text-warning"></i> Ops! Acesso negado.</h1>
+		  
+		  </br>
+          
+          <h3>
+          	<p>
+          		Não foi possível logar no sistema. 
+          		Enquanto isso, verifique <em>Login e Senha</em> e tente novamente. 
+          		Você pode retornar a página de <a th:href="@{/}" href="../index.html"><b>Login</b></a>.
+          	</p>
+		 </h3>
+          
+        </div>
+        <!-- /.error-content -->
+      </div>
+      <!-- /.error-page -->
+    </section>
+    <!-- /.content -->
+    
+  
+<!-- jQuery -->
+<script  th:src="@{../../plugins/jquery/jquery.min.js}" src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script th:src="@{../../plugins/bootstrap/js/bootstrap.bundle.min.js}" src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script th:src="@{../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}" src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script th:src="@{../../dist/js/adminlte.js}" src="../../dist/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script th:src="@{../../dist/js/demo.js}" src="../../dist/js/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="fragments/frag_header_statisticReservoir"><meta charset="utf-8" ></head>
+
+
+<body onload="xR();" class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+ <!-- Navbar -->
+   	<nav th:replace="fragments/nav-mobile"></nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+	<aside th:replace="fragments/aside-mob"></aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Estatísticas - Reservatórios</h1>
+          </div>
+          <div class="col-sm-6">            
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        
+        <div class="row" id="rowReservoir"></div>
+        
+      </div>
+      <!-- /.container-fluid -->
+    </section>       
+    	<!-- /.content -->
+  </div>
+  
+  <!-- /.content-wrapper -->
+ 	<footer class="main-footer" th:replace="fragments/footer"> </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+
+</body>
+</html>

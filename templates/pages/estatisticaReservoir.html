@@ -1,16 +1,14 @@
 ﻿<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html  xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-  
-  <head th:replace="fragments/frag_header_cep">
-	<meta charset="utf-8">
-</head>
 
-  
-<body class="hold-transition sidebar-mini" onload="listEvent()">
+<head th:replace="fragments/frag_header_statisticReservoir"><meta charset="utf-8" ></head>
+
+
+<body onload="xR();" class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
-   <!-- Navbar -->
+ <!-- Navbar -->
    	<nav th:replace="fragments/nav"></nav>
   <!-- /.navbar -->
 
@@ -24,40 +22,33 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Eventos</h1>
+            <h1>Estatísticas - Reservatórios</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a th:href="@{/}" href="../../index.html">Home</a></li>
-              <li class="breadcrumb-item active">Eventos</li>
+              <li class="breadcrumb-item active">Estatísticas</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
+    
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        
+        <div class="row" id="rowReservoir"></div>
+        
+      </div>
+      <!-- /.container-fluid -->
+    </section>       
+    	<!-- /.content -->
+  </div>
+  
+  <!-- /.content-wrapper -->
+ 	<footer class="main-footer" th:replace="fragments/footer"> </footer>
 
-        <div class="card">
-          
-          <!-- /.card-header -->
-          <div id="evento" class="card-body p-0">
-            
-          </div>
-          <!-- /.card-body -->
-        </div>
-      
-      
-      </div>  
-    <!-- /.container-fluid -->
-  </section>
- <!-- /.content -->
-</div>
-  
-  <footer class="main-footer" th:replace="fragments/footer"> </footer>
-  
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -66,32 +57,20 @@
 </div>
 <!-- ./wrapper -->
 
+
 <!-- jQuery -->
-<script th:src="@{../../plugins/jquery/jquery.min.js}" src="../../plugins/jquery/jquery.min.js"></script>
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script th:src="@{../../plugins/bootstrap/js/bootstrap.bundle.min.js}" src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script th:src="@{../../dist/js/adminlte.min.js}" src="../../dist/js/adminlte.min.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script th:src="@{../../dist/js/demo.js}" src="../../dist/js/demo.js"></script>
+<script src="../../dist/js/demo.js"></script>
 <!-- SweetAlert2 -->
 <script th:src="@{../../plugins/sweetalert2/sweetalert2.min.js}" src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
 <script th:src="@{../../plugins/toastr/toastr.min.js}" src="../../plugins/toastr/toastr.min.js"></script>
+<!-- Page Script -->
 
-
-<!-- Page script -->
-<script>
-
-  //botão abrir
-  $(document).ready(function () {
-    $("#abrir").click(function (event) {
-      event.preventDefault();
-      alert("entrou!");
-    });
-  });
-
-  
-</script>
 </body>
 </html>

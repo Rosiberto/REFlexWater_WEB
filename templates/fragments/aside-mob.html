@@ -1,0 +1,97 @@
+﻿<aside class="main-sidebar sidebar-dark-primary elevation-4" 
+	   xmlns:th="http://www.thymeleaf.org"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    
+    
+    <!-- Brand Logo -->
+    <a th:href="@{/mobile/page}" href="/mobile/index.html" class="brand-link">
+      <img th:attr="src=@{../dist/img/reflexWaterLogo.png}" src="../dist/img/reflexWaterLogo.png" alt="REFlex Water Logo" class="brand-image img-circle elevation-3"
+           style="opacity: 2.8">
+      <span class="brand-text font-weight-light">REFlex Water</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img th:attr="src=@{../dist/img/avatar5.png}" src="../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block" sec:authentication="principal.username"></a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a th:href="@{/mobile}" href="page.html" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="nav-icon fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a th:href="@{/mnotify}" href="mobile/mnotificacao.html" class="nav-link">
+                    <i class="nav-icon fa fa-bell text-danger"></i>
+                    <p>Notificações</p>
+                  </a>
+                  </li>
+                <li class="nav-item">
+                  <a th:href="@{/mmonitoring}" href="mobile/mmonitoramento.html" class="nav-link">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <p>Monitoramento</p>
+                  </a>
+                </li>                  
+              </ul>
+          </li>
+          
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-chart-bar"></i>
+                <p>Estatísticas
+                	<i class="nav-icon fas fa-angle-left right"></i>
+                </p>                
+            </a>
+            
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a th:href="@{/mstatisticp}" href="mobile/mestatisticaPump.html" class="nav-link">
+                  <i class="nav-icon far fa-dot-circle"></i>
+                  <p>Bombas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/mstatistict}" href="mobile/mestatisticaTank.html" class="nav-link">
+                  <i class="nav-icon far fa-dot-circle"></i>
+                  <p>Tanques</p>
+                </a>
+              </li>                
+              <li class="nav-item">
+                <a th:href="@{/mstatisticr}" href="mobile/mestatisticaReservoir.html" class="nav-link">
+                  <i class="nav-icon far fa-dot-circle"></i>
+                  <p>Reservatórios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/mstatisticv}" href="mobile/mestatisticaValve.html" class="nav-link">
+                  <i class="nav-icon far fa-dot-circle"></i>
+                  <p>Válvulas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+
+</aside>

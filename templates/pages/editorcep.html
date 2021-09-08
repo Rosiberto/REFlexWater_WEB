@@ -2,7 +2,9 @@
 <html  xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-<head th:replace="fragments/head1"><meta charset="utf-8" ></head>
+<head th:replace="fragments/frag_header_cep">
+	<meta charset="utf-8">
+</head>
 
 <!-- script id="code">
   function init() {
@@ -122,7 +124,7 @@
           makePort("B", go.Spot.Bottom, go.Spot.Bottom, true, false)
         ));
 
-      myDiagram.nodeTemplateMap.add("And",
+myDiagram.nodeTemplateMap.add("And",
         $(go.Node, "Table", nodeStyle(),
           $(go.Panel, "Spot",
             $(go.Shape, "Circle",
@@ -383,10 +385,12 @@
           <div class="card-body">
             <div class="row">
               <div class="col-3">
+                <label for="nome_regra">Nome da regra</label>
                 <input id="nameRule" name="nameRule" type="text" class="form-control" placeholder="Nome da regra" title="Nome da regra">
               </div>
               <div class="col-2">
                 <div class="form-group">
+                  <label for="acao">Tipo de envio</label>
                   <select id="typeAction" name="typeAction" class="form-control select2" style="width: 100%;" title="Tipo de envio">
                     <option>Selecionar</option>
                     <option value="email">email</option>
@@ -398,33 +402,36 @@
               </div>
               <div class="col-2">
                 <div class="form-group">
+                <label for="tipoAlerta">Tipo do alerta</label>
                   <select id="severit" name="severit" class="form-control select2" style="width: 100%;" title="Tipo do alerta">
                     <option selected="selected">Selecionar</option>
                     <option value="warn">atenção</option>
-                    <option value="critical">crítico</option>                    
-                    <option value="info">informação</option>                    
-                                        
+                    <option value="critical">crítico</option>
+                    <option value="info">informação</option>
                   </select>
                 </div>
               </div> 
               <div class="col-2">
                 <div class="form-group">
+                  <label for="tipo">Componente</label>
                   <select id="tipo" name="tipo" class="form-control select2" style="width: 100%;" title="Componente da rede">
                     <option selected="selected" >Selecionar</option>
                     <option value="Pump">Bomba</option>
-                    <option value="Reservoir">Reservatório</option>                    
+                    <option value="Reservoir">Reservatório</option>
                     <option value="Tank">Tanque</option>
                     <option value="Valve">Válvula</option>                    
                   </select>
                 </div>
               </div>              
               <div class="col-3">
+                <label for="assunto">Assunto</label>
                 <input id="notificacao" name="notificacao" type="text" class="form-control" disabled="true" value="REFlex Water - Notificação de Evento" placeholder="REFlex Water - Notificação de Evento">
               </div>
             </div>
             <div class="row">
               <div class="col-3">
                 <div class="form-group">
+                  <label for="from" style="display:none;">De</label>
                   <input type="email" class="form-control" id="fromEmail" name="fromEmail" value="reflexwater2020@gmail.com" placeholder="De (e-mail)" style="display:none;" disabled="true">
            <!-- ********* habilitar depois ********* -->
                 <!-- /div>
@@ -432,6 +439,7 @@
               <div class="col-3">
                 <div class="form-group"-->
                 <!-- ******************************** --> 
+                  <label for="para">Para</label>
                   <input id="toEmail" name="toEmail" type="email" class="form-control" placeholder="Para (e-mail)" title="Destinatário do email">
                 </div>
               </div>
@@ -439,7 +447,8 @@
               <!-- div class="col-6"-->
               <div class="col-9">
                 <div class="form-group">
-                  <textarea id="templateMSG" name="templateMSG" class="form-control" rows="3" placeholder="Mensagem da notificação. Para informar dados dos sensores, use: ${attribute}" title="Mensagem da Notificação"></textarea>
+                  <label for="msg">Mensagem</label>
+                  <textarea id="templateMSG" name="templateMSG" class="form-control" rows="3" placeholder="Mensagem da notificação. Para informar dados dos sensores, use: ${attribute} (e.g., ${Flow})" title="Mensagem da Notificação"></textarea>
                 </div>
               </div>
             </div>
@@ -503,18 +512,10 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- Summernote -->
-<script src="../../plugins/summernote/summernote-bs4.min.js"></script>
 <!-- SweetAlert2 -->
-<script th:src="@{plugins/sweetalert2/sweetalert2.min.js}" src="plugins/sweetalert2/sweetalert2.min.js"></script>
+<script th:src="@{../../plugins/sweetalert2/sweetalert2.min.js}" src="plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
-<script th:src="@{plugins/toastr/toastr.min.js}" src="plugins/toastr/toastr.min.js"></script>
+<script th:src="@{../../plugins/toastr/toastr.min.js}" src="plugins/toastr/toastr.min.js"></script>
 <!-- Page Script -->
-<script>
-  $(function () {
-    //Add text editor
-    $('#t1').summernote()   
-  })
-</script>
 </body>
 </html>

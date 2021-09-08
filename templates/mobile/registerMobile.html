@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:replace="fragments/head"><meta charset="utf-8" ></head>
+<head th:replace="fragments/head-mobile"><meta charset="utf-8" ></head>
 
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -19,7 +19,7 @@
 			<p class="alert alert-success">Registro bem sucedido!</p>
 		</span-->
 				
-      <form th:action="@{/user}" action="/user" method="post" role="form" id="registerForm">
+      <form th:action="@{/userMobile}" action="/userMobile" method="post" role="form" id="registerForm">
         <div class="input-group mb-3 form-group">
           <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
           <div class="input-group-append">
@@ -53,7 +53,7 @@
         </div>
       </form>
 
-      <a th:href="@{/login}"  href="login.html" class="text-center">Já possuo cadastro</a>
+      <a th:href="@{/mobile/login}"  href="login-mobile.html" class="text-center">Já possuo cadastro</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
@@ -62,18 +62,18 @@
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script th:src="@{plugins/jquery/jquery.min.js}" src="plugins/jquery/jquery.min.js"></script>
+<script th:src="@{../plugins/jquery/jquery.min.js}" src="../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script th:src="@{plugins/bootstrap/js/bootstrap.bundle.min.js}" src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{../plugins/bootstrap/js/bootstrap.bundle.min.js}" src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script th:src="@{dist/js/adminlte.js}" src="dist/js/adminlte.js"></script>
+<script th:src="@{../dist/js/adminlte.js}" src="../dist/js/adminlte.js"></script>
 <!-- SweetAlert2 -->
-<script th:src="@{plugins/sweetalert2/sweetalert2.min.js}" src="plugins/sweetalert2/sweetalert2.min.js"></script>
+<script th:src="@{../plugins/sweetalert2/sweetalert2.min.js}" src="../plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
-<script th:src="@{plugins/toastr/toastr.min.js}" src="plugins/toastr/toastr.min.js"></script>
+<script th:src="@{../plugins/toastr/toastr.min.js}" src="../plugins/toastr/toastr.min.js"></script>
 <!-- jquery-validation -->
-<script th:src="@{plugins/jquery-validation/jquery.validate.min.js}" src="plugins/jquery-validation/jquery.validate.min.js"></script>
-<script th:src="@{plugins/jquery-validation/additional-methods.min.js}" src="plugins/jquery-validation/additional-methods.min.js"></script>
+<script th:src="@{../plugins/jquery-validation/jquery.validate.min.js}" src="../plugins/jquery-validation/jquery.validate.min.js"></script>
+<script th:src="@{../plugins/jquery-validation/additional-methods.min.js}" src="../plugins/jquery-validation/additional-methods.min.js"></script>
 
 <script type="text/javascript" th:inline="javascript">
 $(document).ready(function () {
@@ -132,7 +132,7 @@ $(document).ready(function () {
 		}).done(function(response){
 			$('#registerForm')[0].reset();//limpa todos os campos do form
 			toastr.success('Usuário registrado com sucesso!');
-			$(location).attr("href", "/");
+			$(location).attr("href", "/mobile/login");
 		}).fail(function() {
 			toastr.error('Falha ao registrar Usuário!');
 		});

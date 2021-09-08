@@ -6,7 +6,7 @@
 	<head th:replace="fragments/head"><meta charset="utf-8"></head>
 
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">  
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" style="background-image:url('dist/img/logo2.png');background-repeat:no-repeat;background-size:75% 95%;background-attachment:fixed;">  
   
 <div class="wrapper">
 
@@ -26,7 +26,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
+          <!--h1 class="m-0 text-dark">Dashboard</h1-->
             
             
           </div><!-- /.col -->
@@ -85,12 +85,5 @@
 <script th:src="@{plugins/raphael/raphael.min.js}" src="plugins/raphael/raphael.min.js"></script>
 <script th:src="@{plugins/jquery-mapael/jquery.mapael.min.js}" src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
 <script th:src="@{plugins/jquery-mapael/maps/usa_states.min.js}" src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- ChartJS -->
-<script th:src="@{plugins/chart.js/Chart.min.js}" src="plugins/chart.js/Chart.min.js"></script>
-
-<!-- PAGE SCRIPTS -->
-<script th:src="@{dist/js/pages/app.js}" src="dist/js/pages/app.js"></script>
- 
-
 </body>
 </html>
