@@ -27,7 +27,7 @@
 	  		}
 	  		     
 		}else{
-			toastr.error('Failed!');	  		
+			toastr.error('Falhou!');	  		
 		}
 	  }
 	  xhr.send(null);	  
@@ -144,7 +144,8 @@
 	  var c = document.getElementById('cygnus');
       
       if (c.checked){   	  
-    	 postCyg();
+         postCyg();
+         postMysql();
       }else{ 
     	 deleteCyg(); 
       }
@@ -161,7 +162,7 @@
   }
   
   function postCyg(){
-	  var url = "/api/v1/subscription/cygnus";
+	  /*var url = "/api/v1/subscription/cygnus";
 	  var xhr = new XMLHttpRequest();
 	  xhr.open("POST", url, true);
 
@@ -176,6 +177,61 @@
 	  	}
 	  }
 	  xhr.send(null);
+  }*/
+  var porta = 5051;
+  
+    $.ajax({
+        url : "/api/v1/subscription/cygnus",
+        type: "POST",
+        data: porta
+      }).done( function( response ){
+        //$('#registerForm')[0].reset();//limpa todos os campos do form
+        
+        console.log("porta+response: ", porta +" "+ response);
+        alert(porta);
+        
+        toastr.success('Dados Históricos ativados com sucesso!');
+      }).fail(function() {
+        toastr.error('Falha ao ativar Dados Históricos!');
+      });
+  }
+  
+  
+  function postMysql(){
+	  /*
+    var url = "/api/v1/subscription/cygnus";
+	  var xhr = new XMLHttpRequest();
+	  xhr.open("POST", url, true);
+
+	  xhr.onload = function () {
+	  	var resposta = JSON.parse(xhr.responseText);
+	  	if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 201 ) ) {
+		     toastr.success('Dados Históricos ativados com sucesso!');
+	  		//console.table(xhr.status+ " . "+resposta +" - " +xhr.readyState );
+	  	} else {
+	  		toastr.error('Falha ao ativar Dados Históricos!');
+	  		//console.error(xhr.status+ " . "+resposta +" - " +xhr.readyState);
+	  	}
+	  }
+	  xhr.send(null);
+  }
+    */
+    
+    
+    var porta = 5050;
+    
+    $.ajax({
+        url : "/api/v1/subscription/cygnus",
+        type: "POST",
+        data: porta
+      }).done( function( response ){
+        //$('#registerForm')[0].reset();//limpa todos os campos do form
+        console.log(porta);
+        alert(porta);
+        toastr.success('Dados Históricos ativados com sucesso!');
+      }).fail(function() {
+        toastr.error('Falha ao ativar Dados Históricos!');
+      });
   }
   
   function deleteCyg(){
